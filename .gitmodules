@@ -7,11 +7,3 @@
 [submodule ".tmux"]
 	path = .tmux
 	url = https://github.com/gpakosz/.tmux
-[submodule "vim/bundle/ctrlp.vim"]
-	path = vim/bundle/ctrlp.vim
-	url = https://github.com/ctrlpvim/ctrlp.vim
-	ignore = untracked
-[submodule "vim/bundle/nerdtree"]
-	path = vim/bundle/nerdtree
-	url = https://github.com/scrooloose/nerdtree
-	ignore = untracked
