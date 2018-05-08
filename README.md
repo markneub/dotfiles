@@ -1,4 +1,4 @@
-Dotfiles Template
+my dotfiles
 =================
 
 This is a template repository for bootstrapping your dotfiles with [Dotbot][dotbot].
