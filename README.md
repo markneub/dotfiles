@@ -19,4 +19,4 @@ git submodule update --init --remote
 
 #### Huh?
 
-This repo contains my dotfiles, with simple installation provided by [Dotbot][dotbot].
+This repo contains my dotfiles, with simple installation provided by [Dotbot](https://github.com/anishathalye/dotbot).
