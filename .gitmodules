@@ -4,9 +4,6 @@
 [submodule "oh-my-zsh"]
 	path = .oh-my-zsh
 	url = https://github.com/robbyrussell/oh-my-zsh
-[submodule ".tmux"]
-	path = .tmux
-	url = https://github.com/gpakosz/.tmux
 [submodule "vim/bundle/ale"]
 	path = vim/bundle/ale
 	url = https://github.com/w0rp/ale.git
@@ -55,3 +52,6 @@
 [submodule "vim/bundle/vim-vue"]
 	path = vim/bundle/vim-vue
 	url = https://github.com/posva/vim-vue.git
+[submodule "tmux"]
+	path = tmux
+	url = https://github.com/gpakosz/.tmux
