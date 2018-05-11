@@ -1,4 +1,4 @@
-This repo contains my dotfiles, with simple installation provided by [Dotbot](https://github.com/anishathalye/dotbot).
+This repo contains my dotfiles, with management provided by [Dotbot](https://github.com/anishathalye/dotbot).
 
 #### Installation
 
