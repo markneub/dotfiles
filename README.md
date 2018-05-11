@@ -1,4 +1,4 @@
-### My Dotfiles
+This repo contains my dotfiles, with simple installation provided by [Dotbot](https://github.com/anishathalye/dotbot).
 
 #### Installation
 
@@ -16,7 +16,3 @@ Upgrade submodules to latest versions:
 ```shell
 git submodule update --init --remote
 ```
-
-#### Huh?
-
-This repo contains my dotfiles, with simple installation provided by [Dotbot](https://github.com/anishathalye/dotbot).
