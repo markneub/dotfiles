@@ -74,3 +74,7 @@
 	path = tmux
 	url = https://github.com/gpakosz/.tmux
 	ignore = dirty
+[submodule "vim/bundle/Vundle.vim"]
+	path = vim/bundle/Vundle.vim
+	url = https://github.com/VundleVim/Vundle.vim.git
+	ignore = dirty
