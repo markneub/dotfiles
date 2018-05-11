@@ -3,7 +3,7 @@
 	url = https://github.com/anishathalye/dotbot
 	ignore = dirty
 [submodule "oh-my-zsh"]
-	path = .oh-my-zsh
+	path = oh-my-zsh
 	url = https://github.com/robbyrussell/oh-my-zsh
 	ignore = dirty
 [submodule "vim/bundle/ale"]

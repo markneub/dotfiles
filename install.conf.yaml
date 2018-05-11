@@ -3,7 +3,7 @@
       create: true
       relink: true
 
-- clean: ['~', '~/.config']
+- clean: ['~']
 
 - link:
     ~/.dotfiles: ''
@@ -18,7 +18,7 @@
     ~/.vim:
     ~/.vimrc:
     ~/.zshrc:
-    ~/.dotfiles/.oh-my-zsh/custom/themes/bureau-custom.zsh-theme: 'bureau-custom.zsh-theme'
+    ~/.dotfiles/oh-my-zsh/custom/themes/bureau-custom.zsh-theme: 'bureau-custom.zsh-theme'
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
