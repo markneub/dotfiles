@@ -284,3 +284,8 @@ set -g allow-rename off
 
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
 # run '~/.tmux/plugins/tpm/tpm'
+
+set -g pane-border-status bottom
+set-option -g pane-border-format '#(sh ~/.dotfiles/pane-border-format.sh --pane-current-path=#{pane_current_path})'
+
+# set-option -g pane-border-format '  #(echo #{pane_current_path} | sed "s:^$HOME:~:") [#(while true; do cd #{pane_current_path} && git branch | sed -n -e "s/^\* \(.*\)/\1/p"; sleep 1; done)]  '
