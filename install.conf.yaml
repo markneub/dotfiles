@@ -18,7 +18,7 @@
     ~/.vim:
     ~/.vimrc:
     ~/.zshrc:
-    ~/.dotfiles/oh-my-zsh/custom/themes/bureau-custom.zsh-theme: 'bureau-custom.zsh-theme'
+    ~/.dotfiles/oh-my-zsh/custom/themes/man.zsh-theme: 'man.zsh-theme'
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
