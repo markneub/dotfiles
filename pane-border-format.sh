@@ -15,7 +15,8 @@ done
 # replace full path to home directory with ~
 PRETTY_PATH=$(sed "s:^$HOME:~:" <<< $PANE_CURRENT_PATH)
 
-### Git [±master ▾●]
+# git functions adapted from the bureau zsh theme
+# https://github.com/robbyrussell/oh-my-zsh/blob/master/themes/bureau.zsh-theme
 
 ZSH_THEME_GIT_PROMPT_PREFIX="["
 ZSH_THEME_GIT_PROMPT_SUFFIX="] "
@@ -26,13 +27,13 @@ ZSH_THEME_GIT_PROMPT_STAGED="⩢"
 ZSH_THEME_GIT_PROMPT_UNSTAGED="⩣"
 ZSH_THEME_GIT_PROMPT_UNTRACKED="⩪"
 
-bureau_git_branch () {
+git_branch () {
   ref=$(command git symbolic-ref HEAD 2> /dev/null) || \
   ref=$(command git rev-parse --short HEAD 2> /dev/null) || return
   echo "${ref#refs/heads/}"
 }
 
-bureau_git_status() {
+git_status() {
   _STATUS=""
 
   # check status of files
@@ -62,20 +63,13 @@ bureau_git_status() {
   if $(echo "$_INDEX" | command grep -q '^## .*behind'); then
     _STATUS="$_STATUS$ZSH_THEME_GIT_PROMPT_BEHIND"
   fi
-  if $(echo "$_INDEX" | command grep -q '^## .*diverged'); then
-    _STATUS="$_STATUS$ZSH_THEME_GIT_PROMPT_DIVERGED"
-  fi
-
-  if $(command git rev-parse --verify refs/stash &> /dev/null); then
-    _STATUS="$_STATUS$ZSH_THEME_GIT_PROMPT_STASHED"
-  fi
 
   echo $_STATUS
 }
 
-bureau_git_prompt () {
-  local _branch=$(bureau_git_branch)
-  local _status=$(bureau_git_status)
+git_prompt () {
+  local _branch=$(git_branch)
+  local _status=$(git_status)
   local _result=""
   if [[ "${_branch}x" != "x" ]]; then
     _result="$ZSH_THEME_GIT_PROMPT_PREFIX$_branch"
@@ -87,4 +81,4 @@ bureau_git_prompt () {
   echo $_result
 }
 
-echo " $PRETTY_PATH $(cd $PANE_CURRENT_PATH && bureau_git_prompt)"
+echo " $PRETTY_PATH $(cd $PANE_CURRENT_PATH && git_prompt)"
