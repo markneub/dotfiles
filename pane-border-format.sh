@@ -1,10 +1,22 @@
 #!/bin/bash
 
+# color variables
+INACTIVE_BORDER_COLOR='#444444'
+ACTIVE_BORDER_COLOR='#00afff'
+RED='#d70000'
+YELLOW='#ffff00'
+GREEN='#5fff00'
+
+# read args
 for i in "$@"
 do
 case $i in
     --pane-current-path=*)
     PANE_CURRENT_PATH="${i#*=}"
+    shift # past argument=value
+    ;;
+    --pane-active=*)
+    PANE_ACTIVE="${i#*=}"
     shift # past argument=value
     ;;
     *) # unknown option
@@ -15,17 +27,25 @@ done
 # replace full path to home directory with ~
 PRETTY_PATH=$(sed "s:^$HOME:~:" <<< $PANE_CURRENT_PATH)
 
+# calculate reset color
+RESET_BORDER_COLOR=$([ $PANE_ACTIVE -eq 1 ] && echo $ACTIVE_BORDER_COLOR || echo $INACTIVE_BORDER_COLOR)
+
+color () {
+  INTENT=$1
+  echo $([ $PANE_ACTIVE -eq 1 ] && echo $INTENT || echo $INACTIVE_BORDER_COLOR)
+}
+
 # git functions adapted from the bureau zsh theme
 # https://github.com/robbyrussell/oh-my-zsh/blob/master/themes/bureau.zsh-theme
 
 ZSH_THEME_GIT_PROMPT_PREFIX="["
 ZSH_THEME_GIT_PROMPT_SUFFIX="] "
-ZSH_THEME_GIT_PROMPT_CLEAN="✓"
+ZSH_THEME_GIT_PROMPT_CLEAN="#[fg=$(color $GREEN)]✓#[fg=$RESET_BORDER_COLOR]"
 ZSH_THEME_GIT_PROMPT_AHEAD="↑"
 ZSH_THEME_GIT_PROMPT_BEHIND="↓"
-ZSH_THEME_GIT_PROMPT_STAGED="⩢"
-ZSH_THEME_GIT_PROMPT_UNSTAGED="⩣"
-ZSH_THEME_GIT_PROMPT_UNTRACKED="⩪"
+ZSH_THEME_GIT_PROMPT_STAGED="#[fg=$(color $GREEN)]●#[fg=$RESET_BORDER_COLOR]"
+ZSH_THEME_GIT_PROMPT_UNSTAGED="#[fg=$(color $YELLOW)]●#[fg=$RESET_BORDER_COLOR]"
+ZSH_THEME_GIT_PROMPT_UNTRACKED="#[fg=$(color $RED)]●#[fg=$RESET_BORDER_COLOR]"
 
 git_branch () {
   ref=$(command git symbolic-ref HEAD 2> /dev/null) || \
@@ -33,7 +53,7 @@ git_branch () {
   echo "${ref#refs/heads/}"
 }
 
-git_status() {
+git_status () {
   _STATUS=""
 
   # check status of files
@@ -81,4 +101,5 @@ git_prompt () {
   echo $_result
 }
 
+# final output
 echo " $PRETTY_PATH $(cd $PANE_CURRENT_PATH && git_prompt)"
