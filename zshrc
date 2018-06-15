@@ -93,4 +93,4 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-[[ -e ~/.profile ]] && emulate sh -c 'source ~/.profile'
+# [[ -e ~/.profile ]] && emulate sh -c 'source ~/.profile'

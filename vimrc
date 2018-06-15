@@ -116,11 +116,11 @@ set softtabstop=2
 set smarttab
 
 " text display settings
+set wrap
 set linebreak
-set textwidth=120
-set autoindent
-set nowrap
-set whichwrap+=h,l,<,>,[,]
+set nolist
+set textwidth=0
+set wrapmargin=0
 
 " writes to the unnamed register also writes to the * and + registers. This
 " makes it easy to interact with the system clipboard
