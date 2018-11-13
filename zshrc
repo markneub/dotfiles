@@ -94,3 +94,8 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # [[ -e ~/.profile ]] && emulate sh -c 'source ~/.profile'
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
+
+# add yarn global packages to $PATH
+export PATH="$PATH:`yarn global bin`"
