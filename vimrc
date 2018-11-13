@@ -25,6 +25,8 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'junegunn/fzf.vim'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
 
 Plugin 'posva/vim-vue'
 
@@ -210,3 +212,10 @@ let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 " --- normal mode ctrl key mappings
 " Ctrl-f: fzf
 nnoremap <c-f> :Ag<CR>
+
+" read ejs files like html
+au BufNewFile,BufRead *.ejs set filetype=html
+
+" autocompletion
+filetype plugin on
+set omnifunc=syntaxcomplete#Complete
