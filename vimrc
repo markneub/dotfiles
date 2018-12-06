@@ -27,6 +27,7 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'junegunn/fzf.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
+Plugin 'cakebaker/scss-syntax.vim'
 
 Plugin 'posva/vim-vue'
 
@@ -174,6 +175,13 @@ nmap <silent> <leader>t :NERDTreeTabsToggle<CR>
 map  <C-l> :tabn<CR>
 map  <C-h> :tabp<CR>
 map  <C-n> :tabnew<CR>
+
+" use jk as a shortcut for escape
+:inoremap jk <esc>
+
+" treat long lines as break lines when navigating up and down
+noremap j gj
+noremap k gk
 
 " --- ale
 let g:airline#extensions#ale#enabled = 1
