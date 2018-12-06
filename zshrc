@@ -99,3 +99,5 @@ export NVM_DIR="$HOME/.nvm"
 
 # add yarn global packages to $PATH
 export PATH="$PATH:`yarn global bin`"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
