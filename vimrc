@@ -83,6 +83,9 @@ let g:mapleader = ","
 let maplocalleader = ","
 let g:maplocalleader = ","
 
+" allow changing buffer without saving it first
+set hidden
+
 " always splits to the right and below
 set splitright
 set splitbelow
