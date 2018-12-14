@@ -11,6 +11,8 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'junegunn/seoul256.vim'
 Plugin 'tomasr/molokai'
+Plugin 'morhetz/gruvbox'
+
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 
@@ -145,7 +147,8 @@ hi clear SignColumn
 " --- vim-colors-solarized
 set background=dark
 let g:solarized_termcolors=256
-colorscheme molokai
+" colorscheme molokai
+colorscheme gruvbox
 
 " let g:seoul256_background = 233
 " colo seoul256
