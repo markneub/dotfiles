@@ -74,9 +74,6 @@ set synmaxcol=300
 " sets how many lines of history vim has to remember
 set history=1000
 
-" set to auto read when a file is changed from the outside
-set autoread
-
 " minimal number of screen lines to keep above and below the cursor
 set scrolloff=10
 
