@@ -29,6 +29,7 @@ Plugin 'easymotion/vim-easymotion'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'junegunn/fzf.vim'
 Plugin 'djoshea/vim-autoread' " FIXME
+Plugin 'scrooloose/nerdcommenter'
 
 " formatters
 Plugin 'pangloss/vim-javascript'
@@ -194,6 +195,9 @@ nmap <silent> <leader>t :NERDTreeTabsToggle<CR>
 map  <C-l> :tabn<CR>
 map  <C-h> :tabp<CR>
 map  <C-n> :tabnew<CR>
+
+" add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
 
 " use jk as a shortcut for escape
 :inoremap jk <esc>
