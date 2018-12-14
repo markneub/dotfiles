@@ -183,7 +183,7 @@ let g:airline_detect_paste=1
 let g:airline#extensions#tabline#enabled = 1
 
 " use solarized theme for airline status bar
-let g:airline_theme='solarized'
+let g:airline_theme='gruvbox'
 
 " --- vim-nerdtree-tabs
 " open/close NERDTree Tabs with \t
