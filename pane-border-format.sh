@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # color variables
-INACTIVE_BORDER_COLOR='#444444'
-ACTIVE_BORDER_COLOR='#00afff'
-RED='#d70000'
-YELLOW='#ffff00'
-GREEN='#5fff00'
+INACTIVE_BORDER_COLOR='colour237'
+ACTIVE_BORDER_COLOR='colour250'
+RED='#cc241d'
+YELLOW='#fabd2f'
+GREEN='#98971a'
 
 # read args
 for i in "$@"
