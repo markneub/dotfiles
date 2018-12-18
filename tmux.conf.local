@@ -157,7 +157,8 @@ tmux_conf_theme_right_separator_sub=''  #   PowerlineSymbols.otf font
 #     - #{username}
 #     - #{username_ssh}
 tmux_conf_theme_status_left=' ❐ #S '
-tmux_conf_theme_status_right='#{prefix}#{pairing} #{?battery_status, #{battery_status},}#{?battery_bar, #{battery_bar},}#{?battery_percentage, #{battery_percentage},} , %D , %l:%M %p | #{username}#{root} | #{hostname} '
+# tmux_conf_theme_status_right='#{prefix}#{pairing} #{?battery_status, #{battery_status},}#{?battery_bar, #{battery_bar},}#{?battery_percentage, #{battery_percentage},} , %D , %l:%M %p | #{username}#{root} | #{hostname} '
+tmux_conf_theme_status_right=' #{username}#{root} | #{hostname} ' 
 
 # status left style
 tmux_conf_theme_status_left_fg='colour239'
@@ -165,9 +166,13 @@ tmux_conf_theme_status_left_bg='colour214'  # yellow, pink, white blue
 tmux_conf_theme_status_left_attr='bold'
 
 # status right style
-tmux_conf_theme_status_right_fg='colour223,colour239,colour239' # light gray, white, black
-tmux_conf_theme_status_right_bg='colour239,#9e9e9e,colour214' # dark gray, red, white
-tmux_conf_theme_status_right_attr='none,none,bold'
+# tmux_conf_theme_status_right_fg='colour223,colour239,colour239' # light gray, white, black
+# tmux_conf_theme_status_right_bg='colour239,#9e9e9e,colour214' # dark gray, red, white
+# tmux_conf_theme_status_right_attr='none,none,bold'
+tmux_conf_theme_status_right_fg='colour239,colour239' # light gray, white, black
+tmux_conf_theme_status_right_bg='#9e9e9e,colour214' # dark gray, red, white
+tmux_conf_theme_status_right_attr='none,bold'
+
 
 # pairing indicator
 tmux_conf_theme_pairing='👓 '          # U+1F453
