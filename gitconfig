@@ -11,7 +11,7 @@
 	st = status
 	last = log -1 HEAD
 [core]
-	editor = atom --wait
+	editor = vim
 	excludesfile = /Users/markneub/.gitignore_global
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
