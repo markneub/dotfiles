@@ -158,7 +158,7 @@ tmux_conf_theme_right_separator_sub=''  #   PowerlineSymbols.otf font
 #     - #{username_ssh}
 tmux_conf_theme_status_left=' ❐ #S '
 # tmux_conf_theme_status_right='#{prefix}#{pairing} #{?battery_status, #{battery_status},}#{?battery_bar, #{battery_bar},}#{?battery_percentage, #{battery_percentage},} , %D , %l:%M %p | #{username}#{root} | #{hostname} '
-tmux_conf_theme_status_right=' #{username}#{root} | #{hostname} ' 
+tmux_conf_theme_status_right=' #{prefix}#{username}#{root}@#{hostname} ' 
 
 # status left style
 tmux_conf_theme_status_left_fg='colour239'
@@ -181,7 +181,7 @@ tmux_conf_theme_pairing_bg='none'
 tmux_conf_theme_pairing_attr='none'
 
 # prefix indicator
-tmux_conf_theme_prefix='⌨ '            # U+2328
+tmux_conf_theme_prefix='⌨  '            # U+2329
 tmux_conf_theme_prefix_fg='none'
 tmux_conf_theme_prefix_bg='none'
 tmux_conf_theme_prefix_attr='none'
