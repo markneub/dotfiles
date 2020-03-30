@@ -60,6 +60,7 @@ ZSH_THEME="man"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
+  zsh-completions
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -93,7 +94,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-alias ls='ls -l'
+alias ls='exa -l'
 alias dc='docker-compose'
 
 # [[ -e ~/.profile ]] && emulate sh -c 'source ~/.profile'
@@ -115,3 +116,30 @@ n() {
     rm $NNN_TMPFILE
   fi
 }
+
+# automatic node version switching with nvm
+# cd() {
+  # builtin cd "$@"
+  # if [[ -f .nvmrc && -r .nvmrc ]]; then
+    # nvm use --silent
+  # elif [[ `nvm current` != `nvm version default` ]]; then
+    # nvm use --silent default
+  # fi
+# }
+# cd .
+
+autoload -U add-zsh-hook
+load-nvmrc() {
+  if [[ -f .nvmrc && -r .nvmrc ]]; then
+    nvm use
+  fi
+}
+add-zsh-hook chpwd load-nvmrc
+
+compctl -g '~/.teamocil/*(:t:r)' teamocil
+export PATH="/usr/local/opt/ruby/bin:$PATH"
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"

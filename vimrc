@@ -21,15 +21,18 @@ Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'w0rp/ale'
-Plugin 'xolox/vim-misc'
-Plugin 'xolox/vim-easytags'
+" Plugin 'xolox/vim-misc'
+" Plugin 'xolox/vim-easytags'
+Plugin 'ludovicchabant/vim-gutentags'
 Plugin 'majutsushi/tagbar'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'easymotion/vim-easymotion'
+Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'junegunn/fzf.vim'
-Plugin 'djoshea/vim-autoread' " FIXME
+"Plugin 'djoshea/vim-autoread' " FIXME
 Plugin 'scrooloose/nerdcommenter'
+Plugin 'wesQ3/vim-windowswap'
 
 " formatters
 Plugin 'pangloss/vim-javascript'
@@ -42,15 +45,16 @@ if !has('nvim')
   Plugin 'roxma/nvim-yarp'
   Plugin 'roxma/vim-hug-neovim-rpc'
 endif
-Plugin 'carlitux/deoplete-ternjs'
-Plugin 'wokalski/autocomplete-flow'
-Plugin 'Shougo/neosnippet'
-Plugin 'Shougo/neosnippet-snippets'
+Plugin 'shougo/neosnippet-snippets'
 
 call vundle#end()
 
 let g:deoplete#enable_at_startup = 1
-let g:neosnippet#enable_completed_snippet = 1
+if !exists('g:deoplete#omni#input_patterns')
+  let g:deoplete#omni#input_patterns = {}
+endif
+" let g:deoplete#disable_auto_complete = 1
+autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
 " enable fzf
 set rtp+=/usr/local/opt/fzf
@@ -102,10 +106,6 @@ let g:maplocalleader = ","
 
 " allow changing buffer without saving it first
 set hidden
-
-" always splits to the right and below
-set splitright
-set splitbelow
 
 " case insensitive search
 set ignorecase
@@ -196,8 +196,12 @@ map  <C-l> :tabn<CR>
 map  <C-h> :tabp<CR>
 map  <C-n> :tabnew<CR>
 
+" --- nerdcommenter
 " add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
+" toggle comments with <C-/> (registers as <C-_> for some reason)
+nnoremap <C-_> :call NERDComment(0,"toggle")<CR>
+vnoremap <C-_> :call NERDComment(0,"toggle")<CR>
 
 " use jk as a shortcut for escape
 :inoremap jk <esc>
@@ -206,29 +210,47 @@ let g:NERDSpaceDelims = 1
 noremap j gj
 noremap k gk
 
+" buffer controls
+noremap <C-q> :bdelete<CR>
+
 " --- ale
 let g:airline#extensions#ale#enabled = 1
 
-" --- vim-easytags
-set tags=./tags;,~/.vimtags
+" --- gutentags
+let g:gutentags_cache_dir = '~/.gutentags'
+let g:gutentags_ctags_executable = '/usr/local/Cellar/universal-ctags/HEAD-11ee721/bin/ctags'
+let g:gutentags_file_list_command = {
+      \ 'markers': {
+      \ '.git': 'git ls-files',
+      \ },
+      \ }
 
-let g:easytags_events = ['BufReadPost', 'BufWritePost']
-let g:easytags_async = 1
-let g:easytags_dynamic_files = 2
-let g:easytags_resolve_links = 1
-let g:easytags_suppress_ctags_warning = 1
-let g:easytags_file = '~/.vim/tags'
+" --- vim-easytags
+" set tags=./tags;,~/.vimtags
+
+" let g:easytags_events = ['BufReadPost', 'BufWritePost']
+" let g:easytags_async = 1
+" let g:easytags_dynamic_files = 2
+" let g:easytags_resolve_links = 1
+" let g:easytags_suppress_ctags_warning = 1
+" let g:easytags_file = '~/.vim/tags'
 
 " --- tagbar
 " open/close tagbar with ,b
 nmap <silent> <leader>b :TagbarToggle<CR>
+let g:Tlist_Ctags_Cmd='/usr/local/Cellar/universal-ctags/HEAD-11ee721/bin/ctags'
 " open tagbar automatically whenever possible
 " autocmd BufEnter * nested :call tagbar#autoopen(0)
 
 " --- ctrlp
+" let g:ctrlp_custom_ignore = {
+  " \ 'dir':  '\v[\/]\.(git|hg|svn|node_modules|static)$',
+  " \ 'file': '\v\.(exe|so|dll)$',
+  " \ }
+
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]\.(git|hg|svn|node_modules|static)$',
-  \ 'file': '\v\.(exe|so|dll)$',
+  \   'dir' : '\.git$\|build$\|bower_components\|node_modules\|dist\|target' ,
+  \   'file' : '\v\.(exe|dll|lib)$'
   \ }
 
 " open files in a new tab upon <CR> instead of <c-t>
@@ -248,5 +270,26 @@ nnoremap <c-f> :Ag<CR>
 au BufNewFile,BufRead *.ejs set filetype=html
 
 " autocompletion
-filetype plugin on
-set omnifunc=syntaxcomplete#Complete
+
+" omnifuncs
+augroup omnifuncs
+  autocmd!
+  autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+  autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+  autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+  autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+  autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+augroup end
+
+" tern
+if exists('g:plugs["tern_for_vim"]')
+  let g:tern_show_argument_hints = 'on_hold'
+  let g:tern_show_signature_in_pum = 1
+  autocmd FileType javascript setlocal omnifunc=tern#Complete
+endif
+
+" deoplete tab-complete
+inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+" tern
+autocmd FileType javascript nnoremap <silent> <buffer> gb :TernDef<CR>
+
