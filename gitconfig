@@ -21,3 +21,5 @@
 	trustExitCode = true
 [commit]
 	template = /Users/markneub/.stCommitMsg
+[pull]
+	ff = only

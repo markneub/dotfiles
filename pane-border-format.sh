@@ -49,6 +49,7 @@ ZSH_THEME_GIT_PROMPT_UNTRACKED="#[fg=$(color $RED)]●#[fg=$RESET_BORDER_COLOR]"
 
 git_branch () {
   ref=$(command git symbolic-ref HEAD 2> /dev/null) || \
+  # ref=$(command git rev-parse --no-optional-locks --short HEAD 2> /dev/null) || return
   ref=$(command git rev-parse --short HEAD 2> /dev/null) || return
   echo "${ref#refs/heads/}"
 }

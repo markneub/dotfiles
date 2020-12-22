@@ -281,3 +281,17 @@ set -g pane-border-format '#(sh ~/.dotfiles/pane-border-format.sh \
 	--pane-current-path=#{pane_current_path} \
 	--pane-active=#{pane_active})'
 set -g status-interval 1
+
+# TODO may not need this with tmux-sensible on
+# set -g @resurrect-capture-pane-contents 'on'
+
+# list of plugins
+set -g @tpm_plugins '           \
+   tmux-plugins/tpm             \
+   tmux-plugins/tmux-sensible   \
+   tmux-plugins/tmux-resurrect  \
+   tmux-plugins/tmux-continuum  \
+'
+
+# initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
+run -b '~/.tmux/plugins/tpm/tpm'
