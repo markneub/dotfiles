@@ -129,10 +129,14 @@ tmux_conf_theme_window_status_last_attr='none'
 #tmux_conf_theme_left_separator_sub='|'
 #tmux_conf_theme_right_separator_main=''
 #tmux_conf_theme_right_separator_sub='|'
-tmux_conf_theme_left_separator_main=''  # /!\ you don't need to install Powerline
-tmux_conf_theme_left_separator_sub=''   #   you only need fonts patched with
-tmux_conf_theme_right_separator_main='' #   Powerline symbols or the standalone
-tmux_conf_theme_right_separator_sub=''  #   PowerlineSymbols.otf font
+#tmux_conf_theme_left_separator_main=''  # /!\ you don't need to install Powerline
+#tmux_conf_theme_left_separator_sub=''   #   you only need fonts patched with
+#tmux_conf_theme_right_separator_main='' #   Powerline symbols or the standalone
+#tmux_conf_theme_right_separator_sub=''  #   PowerlineSymbols.otf font
+tmux_conf_theme_left_separator_main="\uE0B0"  # /!\ you don't need to install Powerline	
+tmux_conf_theme_left_separator_sub="\uE0B1"   #   you only need fonts patched with	
+tmux_conf_theme_right_separator_main="\uE0B2" #   Powerline symbols or the standalone	
+tmux_conf_theme_right_separator_sub="\uE0B3"  #   PowerlineSymbols.otf font, see README.md
 
 # status left/right content:
 #   - separate main sections with '|'
@@ -181,7 +185,7 @@ tmux_conf_theme_pairing_bg='none'
 tmux_conf_theme_pairing_attr='none'
 
 # prefix indicator
-tmux_conf_theme_prefix='⌨  '            # U+2329
+tmux_conf_theme_prefix='⌨'            # U+2329
 tmux_conf_theme_prefix_fg='none'
 tmux_conf_theme_prefix_bg='none'
 tmux_conf_theme_prefix_attr='none'
@@ -235,7 +239,6 @@ tmux_conf_battery_status_discharging='↓'    # U+2193
 tmux_conf_theme_clock_colour='colour109'
 tmux_conf_theme_clock_style='24'
 
-
 # -- clipboard -----------------------------------------------------------------
 
 # in copy mode, copying selection also copies to the OS clipboard
@@ -270,8 +273,9 @@ bind C-a send-prefix
 # move status line to top
 #set -g status-position top
 
-# use zsh instead of bash
-set -g default-command /usr/local/bin/zsh
+# use zsh instead of bash (homebrew, arm64)
+set -g default-command /opt/homebrew/bin/zsh
+set -g default-shell /opt/homebrew/bin/zsh
 
 # disallow window title renaming
 set -g allow-rename off
@@ -285,13 +289,21 @@ set -g status-interval 1
 # TODO may not need this with tmux-sensible on
 # set -g @resurrect-capture-pane-contents 'on'
 
+tmux_conf_update_plugins_on_launch=false
+tmux_conf_update_plugins_on_reload=false
+
+# dont need these lines anymore
 # list of plugins
-set -g @tpm_plugins '           \
-   tmux-plugins/tpm             \
-   tmux-plugins/tmux-sensible   \
-   tmux-plugins/tmux-resurrect  \
-   tmux-plugins/tmux-continuum  \
-'
+#set -g @tpm_plugins '           \
+#   tmux-plugins/tpm             \
+#   tmux-plugins/tmux-sensible   \
+#   tmux-plugins/tmux-resurrect  \
+#   tmux-plugins/tmux-continuum  \
+#'
 
 # initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
-run -b '~/.tmux/plugins/tpm/tpm'
+#run -b '~/.tmux/plugins/tpm/tpm'
+
+set -g @plugin 'tmux-plugins/tmux-sensible'
+set -g @plugin 'tmux-plugins/tmux-resurrect'
+set -g @plugin 'tmux-plugins/tmux-continuum'
