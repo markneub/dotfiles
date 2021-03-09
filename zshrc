@@ -4,6 +4,9 @@
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/markneub/.dotfiles/oh-my-zsh
 
+# https://github.com/ohmyzsh/ohmyzsh/issues/6835#issuecomment-390216875
+ZSH_DISABLE_COMPFIX=true
+
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
@@ -98,6 +101,7 @@ source $ZSH/oh-my-zsh.sh
 
 alias ls='exa -l'
 alias dc='docker-compose'
+alias ibrew='arch -x86_64 brew' # for installing intel-only packages on M1
 
 # [[ -e ~/.profile ]] && emulate sh -c 'source ~/.profile'
 export NVM_DIR="$HOME/.nvm"
@@ -145,3 +149,5 @@ export PATH="/usr/local/opt/ruby/bin:$PATH"
 export PATH="$PATH:$HOME/.rvm/bin"
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+export PATH="/opt/homebrew/bin:/opt/homebrew/Cellar:$PATH"
